@@ -2,6 +2,7 @@
 
 namespace EddieRusinskas\LaravelScoutOpenSearch;
 
+use Aws\Credentials\Credentials;
 use EddieRusinskas\LaravelScoutOpenSearch\Engines\OpenSearchEngine;
 use EddieRusinskas\LaravelScoutOpenSearch\Services\OpenSearchClient;
 use Laravel\Scout\EngineManager;
@@ -13,13 +14,10 @@ class LaravelScoutOpenSearchServiceProvider extends \Illuminate\Support\ServiceP
         resolve(EngineManager::class)->extend('opensearch', function () {
             return new OpenSearchEngine(
                 OpenSearchClient::createFromConfig([
-                    "hosts"                => [
-                        config("scout.opensearch.host")
-                    ],
-                    "basic_authentication" => [
-                        "username" => config("scout.opensearch.username"),
-                        "password" => config("scout.opensearch.password"),
-                    ]
+                    "endpoint"    => config("scout.opensearch.endpoint"),
+                    "region"      => config("scout.opensearch.region"),
+                    "version"     => config("scout.opensearch.version"),
+                    "credentials" => new Credentials(config("scout.opensearch.access_key"), config("scout.opensearch.secret_key")),
                 ])
             );
         });

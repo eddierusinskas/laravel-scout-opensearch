@@ -2,9 +2,9 @@
 
 namespace EddieRusinskas\LaravelScoutOpenSearch\Services;
 
+use Aws\OpenSearchService\OpenSearchServiceClient;
 use Illuminate\Database\Eloquent\Collection;
 use OpenSearch\Client;
-use OpenSearch\ClientBuilder;
 
 class OpenSearchClient
 {
@@ -17,7 +17,7 @@ class OpenSearchClient
 
     public function createClientFromConfig(array $config): static
     {
-        $this->client = ClientBuilder::fromConfig($config);
+        $this->client = OpenSearchServiceClient::fromConfig($config);
         return $this;
     }
 

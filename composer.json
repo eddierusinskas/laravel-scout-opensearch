@@ -15,7 +15,8 @@
         "laravel/scout": "^8.0|^9.0|^10.0",
         "illuminate/database": "^8.0|^9.0|^10.0",
         "illuminate/support": "^8.0|^9.0|^10.0",
-        "opensearch-project/opensearch-php": "^2.1"
+        "opensearch-project/opensearch-php": "^2.1",
+        "aws/aws-sdk-php": "^3.262"
     },
     "extra": {
         "laravel": {
