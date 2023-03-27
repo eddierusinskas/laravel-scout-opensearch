@@ -1,10 +1,12 @@
 <?php
 
+namespace EddieRusinskas\LaravelScoutOpenSearch\Engines;
+
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\LazyCollection;
 use Laravel\Scout\Builder;
 use Laravel\Scout\Jobs\RemoveableScoutCollection;
-use Services\OpenSearchClient;
+use EddieRusinskas\LaravelScoutOpenSearch\Services\OpenSearchClient;
 
 class OpenSearchEngine extends \Laravel\Scout\Engines\Engine
 {
@@ -88,8 +90,7 @@ class OpenSearchEngine extends \Laravel\Scout\Engines\Engine
     public function search(Builder $builder)
     {
         return $this->performSearch($builder, array_filter([
-            'numericFilters' => $this->filters($builder),
-            'hitsPerPage'    => $builder->limit,
+            'size'    => $builder->limit,
         ]));
     }
 

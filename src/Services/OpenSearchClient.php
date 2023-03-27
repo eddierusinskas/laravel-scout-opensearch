@@ -1,6 +1,6 @@
 <?php
 
-namespace Services;
+namespace EddieRusinskas\LaravelScoutOpenSearch\Services;
 
 use Illuminate\Database\Eloquent\Collection;
 use OpenSearch\Client;
