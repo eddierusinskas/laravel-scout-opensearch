@@ -10,17 +10,15 @@ class OpenSearchClient
 {
     private Client $client;
 
-    public function __construct()
+    public static function createFromConfig(array $config): OpenSearchClient
     {
-        $this->client = ClientBuilder::fromConfig([
-            "hosts"                => [
-                config("scout.opensearch.host")
-            ],
-            "basic_authentication" => [
-                "username" => config("scout.opensearch.username"),
-                "password" => config("scout.opensearch.password"),
-            ]
-        ]);
+        return (new static())->createClientFromConfig($config);
+    }
+
+    public function createClientFromConfig(array $config): static
+    {
+        $this->client = ClientBuilder::fromConfig($config);
+        return $this;
     }
 
     public function createIndex(string $index): void
