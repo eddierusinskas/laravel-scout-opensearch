@@ -16,7 +16,7 @@ class LaravelScoutOpenSearchServiceProvider extends \Illuminate\Support\ServiceP
                 new OpenSearchClient(
                     (new ClientBuilder())
                         ->setHosts([config('scout.opensearch.host')])
-                        ->setBasicAuthentication(config('scout.opensearch.username', config('scout.opensearch.password')))
+                        ->setBasicAuthentication(config('scout.opensearch.username'), config('scout.opensearch.password'))
                         ->build()
                 )
             );
